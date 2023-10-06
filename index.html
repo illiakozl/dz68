@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Мій список тудушок</h1>
+
+  <ul id="todo-list">
+    <!-- Тут буде виведено тудушки -->
+  </ul>
+
+  <form id="todo-form">
+    <input type="text" id="todo-input" placeholder="Введіть нову тудушку">
+    <button type="submit">Додати</button>
+  </form>
+
+  <script>
+    const todoList = document.getElementById('todo-list');
+    const todoForm = document.getElementById('todo-form');
+    const todoInput = document.getElementById('todo-input');
+
+    // Додаємо обробник події для форми
+    todoForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Зупиняємо дію за замовчуванням (відправку форми)
+
+      const todoText = todoInput.value.trim(); // Отримуємо текст тудушки, який ввів користувач
+
+      if (todoText !== '') {
+        // Створюємо новий елемент списку
+        const todoItem = document.createElement('li');
+        todoItem.textContent = todoText;
+
+        // Додаємо обробник події для визначення стану тудушки (зроблено/не зроблено)
+        todoItem.addEventListener('click', function() {
+          todoItem.classList.toggle('completed'); // Перемикаємо клас completed
+        });
+
+        // Додаємо новий елемент до списку
+        todoList.appendChild(todoItem);
+
+        // Очищуємо поле вводу
+        todoInput.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
